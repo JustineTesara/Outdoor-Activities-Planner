@@ -3,46 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <title>Outdoor Planner</title>
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <h1>Outdoor Activity Planner</h1>
+    <div class="container">
+      <h1>🌤️ Outdoor Activity Planner</h1>
 
-    <form action="/plan" method="POST">
-      <input
-        type="text"
-        name="activity"
-        placeholder="Activity (ex: Jogging)"
-        required
-      /><br /><br />
+      <form action="/plan" method="POST">
+        <input
+          type="text"
+          name="activity"
+          placeholder="Activity (ex: Jogging)"
+          required
+        />
 
-      <input
-        type="text"
-        name="place"
-        placeholder="Place (ex: Manila)"
-        required
-      /><br /><br />
+        <input
+          type="text"
+          name="place"
+          placeholder="Place (ex: Manila)"
+          required
+        />
 
-      <input type="date" name="date" required /><br /><br />
+        <input type="date" name="date" required />
 
-      <input type="time" name="time" required /><br /><br />
+        <input type="time" name="time" required />
 
-      <button type="submit">Plan</button>
-    </form>
+        <button type="submit">Plan My Activity</button>
+      </form>
 
-    <% if (result) { %>
-    <hr />
+      <% if (result) { %>
+      <hr />
 
-    <% if (result.error) { %>
-    <p><%= result.error %></p>
-    <% } else { %>
-    <h3>Plan Summary</h3>
-    <p><strong>Activity:</strong> <%= result.activity %></p>
-    <p><strong>Place:</strong> <%= result.place %></p>
-    <p><strong>Date:</strong> <%= result.date %></p>
-    <p><strong>Time:</strong> <%= result.time %></p>
-    <p><strong>Weather:</strong> <%= result.weather %></p>
-    <p><strong>Temperature:</strong> <%= result.temp %>°C</p>
-    <p><strong>Suggestion:</strong> <%= result.suggestion %></p>
-    <% } %> <% } %>
+      <div class="result-section">
+        <% if (result.error) { %>
+        <p class="error"><%= result.error %></p>
+        <% } else { %>
+        <h3>📋 Your Plan</h3>
+        <p>
+          <strong><span class="icon">🏃</span>Activity:</strong> <%=
+          result.activity %>
+        </p>
+        <p>
+          <strong><span class="icon">📍</span>Place:</strong> <%= result.place
+          %>
+        </p>
+        <p>
+          <strong><span class="icon">📅</span>Date:</strong> <%= result.date %>
+        </p>
+        <p>
+          <strong><span class="icon">🕐</span>Time:</strong> <%= result.time %>
+        </p>
+        <p>
+          <strong><span class="icon">☁️</span>Weather:</strong> <%=
+          result.weather %>
+        </p>
+        <p>
+          <strong><span class="icon">🌡️</span>Temperature:</strong> <%=
+          result.temp %>°C
+        </p>
+
+        <div class="suggestion-box">
+          <p>
+            <strong><span class="icon">💡</span>Suggestion:</strong> <%=
+            result.suggestion %>
+          </p>
+        </div>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
   </body>
 </html>
